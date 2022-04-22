@@ -1,1 +1,1 @@
-# kubeslice-apis
+# apis
