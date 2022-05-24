@@ -56,7 +56,9 @@ type QOSProfile struct {
 }
 
 type NamespaceIsolationProfile struct {
-	IsolationEnabled      bool     `json:"isolationEnabled,omitempty"`
+	//+kubebuilder:default:=false
+	//+kubebuilder:validation:Optional
+	IsolationEnabled      bool     `json:"isolationEnabled"`
 	ApplicationNamespaces []string `json:"applicationNamespaces,omitempty"`
 	AllowedNamespaces     []string `json:"allowedNamespaces,omitempty"`
 }
