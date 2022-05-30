@@ -21,6 +21,7 @@ import (
 
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
+	"k8s.io/apimachinery/pkg/runtime"
 	k8sUuid "k8s.io/apimachinery/pkg/util/uuid"
 	"sigs.k8s.io/controller-runtime/pkg/client"
 )
@@ -38,21 +39,22 @@ type Client interface {
 	Update(ctx context.Context, obj client.Object, opts ...client.UpdateOption) error
 	Status() client.StatusWriter
 }
-type kubeSliceControllerContextKey struct {
+type KubeSliceControllerContextKey struct {
 }
 
 // kubeSliceControllerRequestContext is a schema for request context
-type kubeSliceControllerRequestContext struct {
+type KubeSliceControllerRequestContext struct {
 	Client
-	Log *zap.SugaredLogger
+	Scheme *runtime.Scheme
+	Log    *zap.SugaredLogger
 }
 
 // kubeSliceControllerContext is instance of kubeSliceControllerContextKey
-var kubeSliceControllerContext = &kubeSliceControllerContextKey{}
+var KubeSliceControllerContext = &KubeSliceControllerContextKey{}
 
 // PrepareKubeSliceControllersRequestContext is a function to create the context for kube slice
 func PrepareKubeSliceControllersRequestContext(ctx context.Context, client Client,
-	controllerName string) context.Context {
+	scheme *runtime.Scheme, controllerName string) context.Context {
 	uuid := k8sUuid.NewUUID()[:8]
 
 	var log *zap.SugaredLogger
@@ -66,10 +68,11 @@ func PrepareKubeSliceControllersRequestContext(ctx context.Context, client Clien
 		log = zap.S()
 	}
 
-	ctxVal := &kubeSliceControllerRequestContext{
+	ctxVal := &KubeSliceControllerRequestContext{
 		Client: client,
+		Scheme: scheme,
 		Log:    log,
 	}
-	newCtx := context.WithValue(ctx, kubeSliceControllerContext, ctxVal)
+	newCtx := context.WithValue(ctx, KubeSliceControllerContext, ctxVal)
 	return newCtx
 }
