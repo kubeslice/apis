@@ -20,6 +20,21 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
+type ComponentHealthStatus string
+
+const (
+  ComponentHealthStatusNormal = "Normal"
+  ComponentHealthStatusWarning = "Warning"
+  ComponentHealthStatusError = "Error"
+)
+
+type SliceHealthStatus string
+
+const (
+  SliceHealthStatusNormal = "Normal"
+  SliceHealthStatusWarning = "Warning"
+)
+
 // WorkerSliceConfigSpec defines the desired state of Slice
 type WorkerSliceConfigSpec struct {
 	SliceName   string `json:"sliceName,omitempty"`
@@ -98,12 +113,25 @@ type AppPod struct {
 type WorkerSliceConfigStatus struct {
 	ConnectedAppPods       []AppPod          `json:"connectedAppPods,omitempty"`
 	OnboardedAppNamespaces []NamespaceConfig `json:"onboardedAppNamespaces,omitempty"`
-	//Health check status of the cluster
+	// SliceHealth shows the health of the slice in worker cluster
+	SliceHealth *SliceHealth `json:"sliceHealth,omitempty"`
+}
+
+type SliceHealth struct {
+  // SliceHealthStatus shows the overall health status of the slice
 	//+kubebuilder:validation:Enum:=Normal;Warning
-	HealthCheck string `json:"healthCheck,omitempty"`
-	//Component status of the cluster
+  SliceHealthStatus SliceHealthStatus `json:"sliceHealthStatus,omitempty"`
+  // ComponentStatuses shows the health status of individual components in the cluster
+  ComponentStatuses []ComponentStatus `json:"componentStatuses,omitempty"`
+  // LastUpdated is the timestamp when healthstatus was updated
+  LastUpdated metav1.Time `json:"lastUpdated,omitempty"`
+}
+
+type ComponentStatus struct {
+	// Component name
+	Component string `json:"component"`
 	//+kubebuilder:validation:Enum:=Normal;Warning;Error
-	Component string `json:"component,omitempty"`
+	ComponentHealthStatus ComponentHealthStatus `json:"componentHealthStatus"`
 }
 
 type NamespaceConfig struct {
