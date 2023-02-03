@@ -23,18 +23,17 @@ import (
 type ComponentHealthStatus string
 
 const (
-  ComponentHealthStatusNormal = "Normal"
-  ComponentHealthStatusWarning = "Warning"
-  ComponentHealthStatusError = "Error"
+	ComponentHealthStatusNormal  = "Normal"
+	ComponentHealthStatusWarning = "Warning"
+	ComponentHealthStatusError   = "Error"
 )
 
 type ClusterHealthStatus string
 
 const (
-  ClusterHealthStatusNormal = "Normal"
-  ClusterHealthStatusWarning = "Warning"
+	ClusterHealthStatusNormal  = "Normal"
+	ClusterHealthStatusWarning = "Warning"
 )
-
 
 // ClusterSpec defines the desired state of Cluster
 type ClusterSpec struct {
@@ -109,13 +108,13 @@ type ClusterStatus struct {
 }
 
 type ClusterHealth struct {
-  // ClusterHealthStatus shows the overall health status of the cluster
+	// ClusterHealthStatus shows the overall health status of the cluster
 	//+kubebuilder:validation:Enum:=Normal;Warning
-  ClusterHealthStatus ClusterHealthStatus `json:"clusterHealthStatus,omitempty"`
-  // ComponentStatuses shows the health status of individual components in the cluster
-  ComponentStatuses []ComponentStatus `json:"componentStatuses,omitempty"`
-  // LastUpdated is the timestamp when healthstatus was updated
-  LastUpdated metav1.Time `json:"lastUpdated,omitempty"`
+	ClusterHealthStatus ClusterHealthStatus `json:"clusterHealthStatus,omitempty"`
+	// ComponentStatuses shows the health status of individual components in the cluster
+	ComponentStatuses []ComponentStatus `json:"componentStatuses,omitempty"`
+	// LastUpdated is the timestamp when healthstatus was updated
+	LastUpdated metav1.Time `json:"lastUpdated,omitempty"`
 }
 
 type ComponentStatus struct {

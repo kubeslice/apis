@@ -23,16 +23,16 @@ import (
 type ComponentHealthStatus string
 
 const (
-  ComponentHealthStatusNormal = "Normal"
-  ComponentHealthStatusWarning = "Warning"
-  ComponentHealthStatusError = "Error"
+	ComponentHealthStatusNormal  = "Normal"
+	ComponentHealthStatusWarning = "Warning"
+	ComponentHealthStatusError   = "Error"
 )
 
 type SliceHealthStatus string
 
 const (
-  SliceHealthStatusNormal = "Normal"
-  SliceHealthStatusWarning = "Warning"
+	SliceHealthStatusNormal  = "Normal"
+	SliceHealthStatusWarning = "Warning"
 )
 
 // WorkerSliceConfigSpec defines the desired state of Slice
@@ -118,13 +118,13 @@ type WorkerSliceConfigStatus struct {
 }
 
 type SliceHealth struct {
-  // SliceHealthStatus shows the overall health status of the slice
+	// SliceHealthStatus shows the overall health status of the slice
 	//+kubebuilder:validation:Enum:=Normal;Warning
-  SliceHealthStatus SliceHealthStatus `json:"sliceHealthStatus,omitempty"`
-  // ComponentStatuses shows the health status of individual components in the cluster
-  ComponentStatuses []ComponentStatus `json:"componentStatuses,omitempty"`
-  // LastUpdated is the timestamp when healthstatus was updated
-  LastUpdated metav1.Time `json:"lastUpdated,omitempty"`
+	SliceHealthStatus SliceHealthStatus `json:"sliceHealthStatus,omitempty"`
+	// ComponentStatuses shows the health status of individual components in the cluster
+	ComponentStatuses []ComponentStatus `json:"componentStatuses,omitempty"`
+	// LastUpdated is the timestamp when healthstatus was updated
+	LastUpdated metav1.Time `json:"lastUpdated,omitempty"`
 }
 
 type ComponentStatus struct {
