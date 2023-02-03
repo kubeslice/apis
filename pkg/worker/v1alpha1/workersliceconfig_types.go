@@ -98,6 +98,12 @@ type AppPod struct {
 type WorkerSliceConfigStatus struct {
 	ConnectedAppPods       []AppPod          `json:"connectedAppPods,omitempty"`
 	OnboardedAppNamespaces []NamespaceConfig `json:"onboardedAppNamespaces,omitempty"`
+	//Health check status of the cluster
+	//+kubebuilder:validation:Enum:=Normal;Warning
+	HealthCheck string `json:"healthCheck,omitempty"`
+	//Component status of the cluster
+	//+kubebuilder:validation:Enum:=Normal;Warning;Error
+	Component string `json:"component,omitempty"`
 }
 
 type NamespaceConfig struct {

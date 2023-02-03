@@ -91,6 +91,12 @@ type ClusterStatus struct {
 	CniSubnet []string `json:"cniSubnet,omitempty"`
 	// Namespaces present in cluster
 	Namespaces []NamespacesConfig `json:"namespaces,omitempty"`
+	//Health check status of the cluster
+	//+kubebuilder:validation:Enum:=Normal;Warning
+	HealthCheck string `json:"healthCheck,omitempty"`
+	//Component status of the cluster
+	//+kubebuilder:validation:Enum:=Normal;Warning;Error
+	Component string `json:"component,omitempty"`
 }
 
 type NamespacesConfig struct {
