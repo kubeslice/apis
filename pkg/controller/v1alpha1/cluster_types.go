@@ -107,6 +107,9 @@ type ClusterStatus struct {
 	ClusterHealth *ClusterHealth `json:"clusterHealth,omitempty"`
 	// NodeIPs of the gateway node of worker cluster
 	NodeIPs []string `json:"nodeIPs,omitempty"`
+	// RegistrationStatus shows the status of cluster registration
+	//+kubebuilder:validation:Enum:=Pending;InProgress;Failed;Registered;DeregisterInProgress;DeregisterFailed
+	RegistrationStatus string `json:"registrationStatus,omitempty"`
 }
 
 type ClusterHealth struct {
@@ -117,9 +120,6 @@ type ClusterHealth struct {
 	ComponentStatuses []ComponentStatus `json:"componentStatuses,omitempty"`
 	// LastUpdated is the timestamp when healthstatus was updated
 	LastUpdated metav1.Time `json:"lastUpdated,omitempty"`
-	// RegistrationStatus shows the status of cluster registration
-	//+kubebuilder:validation:Enum:=Pending;InProgress;Failed;Registered;DeregisterInProgress;DeregisterFailed
-	RegistrationStatus string `json:"registrationStatus,omitempty"`
 }
 
 type ComponentStatus struct {
