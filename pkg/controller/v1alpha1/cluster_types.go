@@ -117,6 +117,9 @@ type ClusterHealth struct {
 	ComponentStatuses []ComponentStatus `json:"componentStatuses,omitempty"`
 	// LastUpdated is the timestamp when healthstatus was updated
 	LastUpdated metav1.Time `json:"lastUpdated,omitempty"`
+	// RegistrationStatus shows the status of cluster registration
+	//+kubebuilder:validation:Enum:=Pending;InProgress;Failed;Registered;DeregisterInProgress;DeregisterFailed
+	RegistrationStatus string `json:"registrationStatus,omitempty"`
 }
 
 type ComponentStatus struct {
