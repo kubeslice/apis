@@ -19,7 +19,7 @@
 package v1beta1
 
 import (
-	controllerv1alpha1 "github.com/kubeslice/apis/pkg/controller/v1alpha1"
+	controllerv1alpha1 "github.com/kubeslice-ent/apis/pkg/controller/v1alpha1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
