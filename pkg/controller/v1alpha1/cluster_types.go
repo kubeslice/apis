@@ -158,7 +158,7 @@ type GpuUtilization struct {
 
 type Reserved struct {
 	SliceName       string `json:"sliceName,omitempty"`
-	NumReservedGPUs uint   `json:"numReservedGPUs,omitempty"`
+	NumReservedGPUs string `json:"numReservedGPUs,omitempty"`
 }
 
 type VCPURestriction struct {
