@@ -150,8 +150,9 @@ type GpuProperties struct {
 
 type GpuUtilization struct {
 	TotalGPUs uint       `json:"totalGPUs,omitempty"`
-	Allocated uint       `json:"allocated,omitempty"`
 	Free      uint       `json:"free,omitempty"`
+	Allocated uint       `json:"allocated,omitempty"`
+	Memory    string     `json:"memory,omitempty"`
 	Reserved  []Reserved `json:"reserved,omitempty"`
 }
 
