@@ -1,4 +1,4 @@
-module github.com/kubeslice/apis
+module github.com/kubeslice-ent/apis
 
 go 1.16
 
