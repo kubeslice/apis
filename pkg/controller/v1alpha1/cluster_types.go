@@ -57,6 +57,8 @@ type ClusterSpec struct {
 	NetworkInterface string `json:"networkInterface,omitempty"`
 	//put in an object
 	ClusterProperty ClusterProperty `json:"clusterProperty,omitempty"`
+	// EnableAutoEviction is a flag to enable auto eviction feature for the given cluster
+	EnableAutoEviction bool `json:"enableAutoEviction,omitempty"`
 }
 
 type ClusterProperty struct {
