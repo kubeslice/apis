@@ -131,6 +131,53 @@ spec:
             properties:
               clusterInsertionIndex:
                 type: integer
+              gatewayMetrics:
+                description: |-
+                  GatewayMetrics contains aggregated metrics from the worker cluster gateway pods
+                  This field is updated by the worker-operator and provides real-time visibility
+                  into gateway performance (latency, throughput, packet loss)
+                properties:
+                  activePods:
+                    description: ActivePods is the number of gateway pods with active
+                      (UP) tunnels
+                    format: int32
+                    type: integer
+                  avgLatency:
+                    description: AvgLatency is the average latency across all active
+                      gateway pods (in milliseconds)
+                    format: int64
+                    type: integer
+                  avgRxRate:
+                    description: AvgRxRate is the average receive rate across all
+                      active gateway pods (in bytes/sec)
+                    format: int64
+                    type: integer
+                  avgTxRate:
+                    description: AvgTxRate is the average transmit rate across all
+                      active gateway pods (in bytes/sec)
+                    format: int64
+                    type: integer
+                  lastUpdated:
+                    description: LastUpdated is the timestamp when these metrics were
+                      last updated
+                    format: date-time
+                    type: string
+                  maxLatency:
+                    description: MaxLatency is the maximum latency observed across
+                      all active gateway pods (in milliseconds)
+                    format: int64
+                    type: integer
+                  minLatency:
+                    description: MinLatency is the minimum latency observed across
+                      all active gateway pods (in milliseconds)
+                    format: int64
+                    type: integer
+                  packetLoss:
+                    description: PacketLoss is the average packet loss percentage
+                      across all active gateway pods
+                    format: int64
+                    type: integer
+                type: object
               gatewayNumber:
                 type: integer
             type: object
