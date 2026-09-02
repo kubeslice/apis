@@ -86,6 +86,7 @@ type WorkerSliceGatewayStatus struct {
 	ClusterInsertionIndex int `json:"clusterInsertionIndex,omitempty"`
 	// ConnectionState is the connectivity state of this gateway link as reported
 	// by the worker: Connected, NotConnected or Pending. Empty means Pending.
+	//+kubebuilder:validation:Enum:=Connected;NotConnected;Pending
 	ConnectionState string `json:"connectionState,omitempty"`
 	// LastTransitionTime is the time ConnectionState last changed.
 	LastTransitionTime *metav1.Time `json:"lastTransitionTime,omitempty"`
